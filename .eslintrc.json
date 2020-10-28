@@ -1,13 +1,13 @@
 {
-  // "parser": "babel-eslint",
+  "parser": "babel-eslint",
   // "extends": ["prettier"],
   // "plugins": ["prettier"],
-  // "env": {
-  //   "browser": true,
-  //   "node": true
-  // },
-  // "rules": {
-  //   "prettier/prettier": ["error"],
-  //   "react/prop-types": 0
-  // }
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    // "prettier/prettier": ["error"],
+    "react/prop-types": 0
+  }
 }
