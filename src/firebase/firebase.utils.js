@@ -1,16 +1,16 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/auth";
 
 const config = {
-  apiKey: 'AIzaSyBf6Bev1OZkUr154KwcbbXSf5eX4_AQIcM',
-  authDomain: 'crwn-db-ea4c8.firebaseapp.com',
-  databaseURL: 'https://crwn-db-ea4c8.firebaseio.com',
-  projectId: 'crwn-db-ea4c8',
-  storageBucket: 'crwn-db-ea4c8.appspot.com',
-  messagingSenderId: '1011510376360',
-  appId: '1:1011510376360:web:79c203977a1fbc2ceb8f9d',
-  measurementId: 'G-L2FM1B59YG',
+  apiKey: "AIzaSyBf6Bev1OZkUr154KwcbbXSf5eX4_AQIcM",
+  authDomain: "crwn-db-ea4c8.firebaseapp.com",
+  databaseURL: "https://crwn-db-ea4c8.firebaseio.com",
+  projectId: "crwn-db-ea4c8",
+  storageBucket: "crwn-db-ea4c8.appspot.com",
+  messagingSenderId: "1011510376360",
+  appId: "1:1011510376360:web:79c203977a1fbc2ceb8f9d",
+  measurementId: "G-L2FM1B59YG",
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -32,7 +32,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         ...additionalData,
       });
     } catch (error) {
-      console.log('error creating user', error.message);
+      console.log("error creating user", error.message);
     }
   }
 
@@ -50,6 +50,21 @@ export const addCollctionAndDocuments = async (collectionKey, objectsToAdd) => {
 
   return await batch.commit();
 };
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollection = collections.docs.map((doc) => {
+    const { title, items } = doc.data();
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items,
+    };
+  });
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  }, {});
+};
 
 firebase.initializeApp(config);
 
@@ -57,7 +72,7 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
+provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;
