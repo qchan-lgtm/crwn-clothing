@@ -1,13 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import {
-  clearItemFromCart,
-  addItem,
-  removeItem,
-} from "../../redux/cart/cart.actions";
+import { clearItemFromCart, addItem, removeItem } from '../../redux/cart/cart.actions';
 
-import "./checkout-item.styles.scss";
+import './checkout-item.styles.scss';
 
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
@@ -18,16 +14,31 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
       </div>
       <span className="name">{name}</span>
       <span className="quantity">
-        <div className="arrow" onClick={() => removeItem(cartItem)}>
+        <div
+          className="arrow"
+          onClick={() => removeItem(cartItem)}
+          onKeyDown={() => removeItem(cartItem)}
+          role="presentation"
+        >
           &#10094;
         </div>
         <span className="value">{quantity}</span>
-        <div className="arrow" onClick={() => addItem(cartItem)}>
+        <div
+          className="arrow"
+          onClick={() => addItem(cartItem)}
+          onKeyDown={() => addItem(cartItem)}
+          role="presentation"
+        >
           &#10095;
         </div>
       </span>
       <span className="price">{price}</span>
-      <div className="remove-button" onClick={() => clearItem(cartItem)}>
+      <div
+        className="remove-button"
+        onClick={() => clearItem(cartItem)}
+        onKeyDown={() => clearItem(cartItem)}
+        role="presentation"
+      >
         &#10005;
       </div>
     </div>

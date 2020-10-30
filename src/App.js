@@ -43,6 +43,7 @@ class App extends Component {
   }
 
   render() {
+    const { currentUser } = this.props;
     return (
       <div>
         <Header />
@@ -53,7 +54,7 @@ class App extends Component {
           <Route
             exact
             path="/signin"
-            render={() => (this.props.currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />)}
+            render={() => (currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />)}
           />
         </Switch>
       </div>
