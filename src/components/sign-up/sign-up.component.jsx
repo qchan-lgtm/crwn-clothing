@@ -8,7 +8,7 @@ import { signUpStart } from '../../redux/user/user.actions';
 
 import './sign-up.styles.scss';
 
-const SignUp = (signUpStart) => {
+const SignUp = ({ signUpStart }) => {
   const [userCredentials, setCredentials] = useState({
     displayName: '',
     email: '',

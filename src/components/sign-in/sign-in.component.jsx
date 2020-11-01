@@ -17,13 +17,6 @@ const SignIn = ({ googleSignInStart, emailSignInStart }) => {
     event.preventDefault();
 
     emailSignInStart(email, password);
-    // try {
-    //   await auth.signInWithEmailAndPassword(email, password);
-    //   // this.setState({ email: '', password: ''})
-    //   setCredentials({ ...userCredentials, email: '', password: '' });
-    // } catch (err) {
-    //   console.log(err);
-    // }
   };
 
   const handleChange = (event) => {
